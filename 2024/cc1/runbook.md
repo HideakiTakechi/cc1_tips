@@ -4,7 +4,6 @@
 [レギュレーション](https://isucon.net/archives/58657116.html)   
 [cc1_o11y：攻略環境](https://github.com/HideakiTakechi/cc1_o11y)  
 [cc1_webapp：ISUCON14ソース](https://github.com/HideakiTakechi/cc1_webapp)  
-[HideakiTakechi](https://github.com/HideakiTakechi)   [YK-marigold](https://github.com/YK-marigold)   [Eri5yn4ck](https://github.com/Eri5yn4ck)  
 [システム全体図と攻略の概要](https://github.com/HideakiTakechi/cc1_tips/blob/main/2024/system_setup.md)
 
 ## 【事前準備】
@@ -38,6 +37,13 @@ $ ssh-add -l       # 新しいTerminalを開いて鍵登録されていること
 > **Info:** 競技日程: 2024年12月8日（日）　競技時間: 10:00 - 18:00（JST）  
 運営が事前発表する競技当日の流れを読んでおき、当日に発表する本戦当日マニュアルを読む。  
 isucon14 Discordは都度確認する。可能ならOBS Studioで録画する。    
+[ライブ中継](https://www.youtube.com/live/sT_9E0pTlns)
+- 9:30 配信スタート  
+- 9:40-10:00 オープニング / 問題の説明  
+- 10:00-18:00 競技時間　　　　　　　　　　　　　　　　※選手は10-18時は大会に関する発言をしない予定です。  
+- 18:00-19:20 振り返り/ 問題解説 / スポンサープレゼン   
+- 20:00 結果発表  
+- 20:30 終了予定  
 
 ### ■EC2の起動
 SREが以下の作業を行う。

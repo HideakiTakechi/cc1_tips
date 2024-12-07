@@ -1,16 +1,17 @@
-# ISUCON14 本戦RUNBOOK CC1 
+# ISUCON14 本戦RUNBOOK CC1 SRE用
 [Portal](https://portal.isucon.net/)  
 [参加規約](https://isucon.net/archives/58657108.html)  
 [レギュレーション](https://isucon.net/archives/58657116.html)   
 
-## 【前日までの準備】
+## 【事前準備】
 - [x] cc1チーム登録（ひでたけ）
 - [x] 競技環境確認（ポータルから試験用のCloudFormation実施/試験ssh接続）  
 - [x] メンバ全員の登録（よーこさとう）、Discord参加、githubのssh公開鍵登録
 - [x] AWSクーポン入手とAWSへの登録
-- [ ] Discordグループ作成
-- [ ] 各自の攻略環境用意（o11yリポジトリを元にしたpprotein可視化環境／CICD環境。github codespaces推奨。ssh秘密鍵登録しよう。.bashrcでssh-agent登録推奨。）
-- [ ] 攻略用のPrivareリポジトリ用意
+- [x] Discordグループ作成
+- [x] 攻略環境用意（o11yリポジトリを元にしたpprotein可視化環境／CICD環境）
+- [x] 攻略用のPrivareリポジトリ用意
+- [ ] github codespacesの作成、ssh秘密鍵登録。.bashrcでssh-agent登録
 - [ ] お昼ごはん、おやつ、ドリンク、睡眠  
 
 ## 【当日競技開始】

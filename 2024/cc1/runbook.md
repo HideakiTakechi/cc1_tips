@@ -2,9 +2,10 @@
 [Portal](https://portal.isucon.net/)  
 [参加規約](https://isucon.net/archives/58657108.html)  
 [レギュレーション](https://isucon.net/archives/58657116.html)   
-[cc1_o11y:攻略環境](https://github.com/HideakiTakechi/cc1_o11y)  
+[cc1_o11y：攻略環境](https://github.com/HideakiTakechi/cc1_o11y)  
 [cc1_webapp：ISUCON14ソース](https://github.com/HideakiTakechi/cc1_webapp)  
-[HideakiTakechi](https://github.com/HideakiTakechi) [YK-marigold](https://github.com/YK-marigold) [Eri5yn4ck](https://github.com/Eri5yn4ck)
+[HideakiTakechi](https://github.com/HideakiTakechi)   [YK-marigold](https://github.com/YK-marigold)   [Eri5yn4ck](https://github.com/Eri5yn4ck)  
+[システム全体図と攻略の概要](https://github.com/HideakiTakechi/cc1_tips/blob/main/2024/system_setup.md)
 
 ## 【事前準備】
 - [ ] お昼ごはん、おやつ、ドリンク、睡眠  
@@ -75,13 +76,17 @@ SREが以下の作業を行う。
 - [ ] webappでgit initして空commit、.gitignoreを作成しgit add,commit
 - [ ] リモートリポジトリ登録して初回push。05_add_webapp_to_github.shを改変して実行。または[ここ](https://github.com/ChallengeClub/isucon_tips/blob/main/2023/20231019_webapp_to_github.md)を参考に手動で設定。
 - [ ] 他のインスタンスでもpullしてコンフリクトがないことを確認する。  
+- [ ] 計測環境準備（setup_targets.yaml） --> agentサービス起動、slowlogオン、nginxのtsv設定
 
 作業にしばらく時間がかかるので、完了するまで以下などを行う。
 
 ### ■調査／ベンチマーク
+- [ ] ポータルから初回ベンチマーク実行。Discordへログをレポートする。
 - [ ] アプリケーションマニュアルを参照しつつブラウザでアクセスして動作を把握する。
-- [ ] 初回のベンチマーク試験を行う。結果をDiscordにポストする。
 - [ ] サーバ内部調査を行って結果を適宜cc1_tipsに記入しDiscordにポストする。サービス名など確認しよう。
+- [ ] USER/PASSを確認しmysqlにログイン。
+- [ ] RDBとテーブルの調査。（テーブル名、各テーブル行数・バイト数、テーブル定義、インデックスを確認しレポート。）
+- [ ] RDBの初期化データの場所を確認。
 
 #### ●サーバ内部調査
 下記などでインスタンスの概要調査を行う。  
@@ -113,21 +118,17 @@ $ git remote -v               # clone元の確認
 $ git checkout -b hidetake    # 各自の開発用ブランチを作成する
 ```
 
+### ■RDB攻略（まずSLOWログを解析してSQLの改善）
+- [ ] 各自devブランチでsql修正、ビルドとデプロイ（sql.yaml）
+- [ ] ポータルから修正後ベンチマーク実行（Discordへログをレポート）
+- [ ] 各自devブランチへcommit/push。commit idをSREに連絡。
+- [ ] SREはコミットをmainに取り込み。(mergeまたはcherry-pick)
+
 -----
 ### 以下2023年版。2024年はcodespacesから作業するので概ね再錬成になるはず。
 
 ## 【攻略】
-### ■RDB攻略
-- USER/PASSを確認しログイン。
-- DBとテーブルの調査。（テーブル名、各テーブル行数・バイト数、テーブル定義、インデックスを確認し調査表に書き出し。）
-- 初期化データの有無を確認。無ければこの時点でmysqldump実施。★
-- [ここ](20231005_mysql_slowlog.md)を参考にslowlogをオン（競技終了時にはoff）
 ### ■WebApp攻略
-- alpの実行
-- アプリログの場所の確認、内容の確認（journaldで集めている場合下記で確認できる）
-```
-journalctl -xef -u <サービス名:isuportsなど>
-```
 - WebAPIのリストアップ
 - N+1の特定と対策
 - その他の重くて不要な処理の確認

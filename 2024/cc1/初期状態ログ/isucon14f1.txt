@@ -110,3 +110,20 @@ ISUCON_DB_PORT="3306"
 ISUCON_DB_USER="isucon"
 ISUCON_DB_PASSWORD="isucon"
 ISUCON_DB_NAME="isuride"
+
+# WebApp以下の容量
+~/webapp$ du -h --max-depth=1 
+96M     ./nodejs
+53M     ./php
+84K     ./ruby
+1.4M    ./public
+39M     ./python
+5.3M    ./payment_mock
+7.3M    ./go
+59M     ./perl
+722M    ./rust
+828K    ./sql
+982M    .
+go, sqlは必要。
+public,payment_mockは念のため保持。
+nodejs, php, ruby, public, python, perl, rustは不要。

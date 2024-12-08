@@ -127,3 +127,48 @@ ISUCON_DB_NAME="isuride"
 go, sqlは必要。
 public,payment_mockは念のため保持。
 nodejs, php, ruby, public, python, perl, rustは不要。
+
+# webappプロセス
+isuride-go.serviceが起動している。
+バイナリの場所は/home/isucon/webapp/go/isurideの筈。
+
+$ systemctl status isuride-go
+● isuride-go.service - isuride-go
+     Loaded: loaded (/etc/systemd/system/isuride-go.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2024-12-08 05:15:46 UTC; 19min ago
+   Main PID: 95719 (isuride)
+      Tasks: 10 (limit: 4535)
+     Memory: 8.9M (peak: 26.5M)
+        CPU: 23.141s
+     CGroup: /system.slice/isuride-go.service
+             └─95719 /home/isucon/webapp/go/isuride
+
+Dec 08 05:35:38 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:38 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31178 - 204 0B in 11.0422>
+Dec 08 05:35:38 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:38 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31186 - 204 0B in 10.9039>
+Dec 08 05:35:39 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:39 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31194 - 204 0B in 10.7819>
+Dec 08 05:35:39 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:39 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31210 - 204 0B in 10.7976>
+Dec 08 05:35:40 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:40 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31226 - 204 0B in 11.1240>
+Dec 08 05:35:40 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:40 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31230 - 204 0B in 10.7894>
+Dec 08 05:35:41 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:41 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31244 - 204 0B in 10.8775>
+Dec 08 05:35:42 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:42 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31258 - 204 0B in 10.9943>
+Dec 08 05:35:42 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:42 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31266 - 204 0B in 10.9480>
+Dec 08 05:35:43 ip-192-168-0-11 isuride[95719]: 2024/12/08 05:35:43 "GET http://isuride.xiv.isucon.net/api/internal/matching HTTP/1.0" from 127.0.0.1:31272 - 204 0B in 10.8204>
+lines 1-20/20 (END)
+
+go$ ll
+total 7412
+drwxr-xr-x  2 isucon isucon    4096 Dec  8 05:14 ./
+drwxr-xr-x 14 isucon isucon    4096 Dec  8 02:50 ../
+-rw-r--r--  1 isucon isucon    1235 Dec  7 19:58 .gitignore
+-rw-r--r--  1 isucon isucon   28976 Dec  7 19:58 app_handlers.go
+-rw-r--r--  1 isucon isucon    9452 Dec  7 19:58 chair_handlers.go
+-rw-r--r--  1 isucon isucon     255 Dec  7 19:58 go.mod
+-rw-r--r--  1 isucon isucon    1291 Dec  7 19:58 go.sum
+-rw-rw-r--  1 isucon isucon      45 Dec  8 05:14 grep
+-rw-r--r--  1 isucon isucon    1818 Dec  7 19:58 internal_handlers.go
+-rwxrwxr-x  1 isucon isucon 7483652 Dec  7 20:03 isuride*
+-rw-r--r--  1 isucon isucon    4785 Dec  7 19:58 main.go
+-rw-r--r--  1 isucon isucon    2474 Dec  7 19:58 middlewares.go
+-rw-r--r--  1 isucon isucon    2602 Dec  7 19:58 models.go
+-rw-r--r--  1 isucon isucon    6655 Dec  7 19:58 owner_handlers.go
+-rw-r--r--  1 isucon isucon    2639 Dec  7 19:58 payment_gateway.go

@@ -1,0 +1,104 @@
+#OS確認
+isucon@ip-192-168-0-11:~$ cat /etc/os-release 
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.1 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+#ユーザー確認
+isucon@ip-192-168-0-11:~$ grep -v nologin /etc/passwd 
+root:x:0:0:root:/root:/bin/bash
+sync:x:4:65534:sync:/bin:/bin/sync
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+tss:x:104:104:TPM software stack,,,:/var/lib/tpm:/bin/false
+pollinate:x:106:1::/var/cache/pollinate:/bin/false
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+isucon:x:1100:1100::/home/isucon:/bin/bash
+isuadmin:x:1110:1110::/home/isuadmin:/bin/bash
+mysql:x:111:113:MySQL Server,,,:/nonexistent:/bin/false
+
+#プロセス確認
+isucon@ip-192-168-0-11:~$ sudo lsof -P -i | grep -v sshd
+COMMAND     PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd       1            root  196u  IPv6   5800      0t0  TCP *:22 (LISTEN)
+systemd-r   342 systemd-resolve   14u  IPv4   5266      0t0  UDP _localdnsstub:53 
+systemd-r   342 systemd-resolve   15u  IPv4   5267      0t0  TCP _localdnsstub:53 (LISTEN)
+systemd-r   342 systemd-resolve   16u  IPv4   5268      0t0  UDP _localdnsproxy:53 
+systemd-r   342 systemd-resolve   17u  IPv4   5269      0t0  TCP _localdnsproxy:53 (LISTEN)
+systemd-n   534 systemd-network   21u  IPv4   5656      0t0  UDP ip-192-168-0-11.ap-northeast-1.compute.internal:68 
+nginx       713            root    5u  IPv4   7269      0t0  TCP *:80 (LISTEN)
+nginx       713            root    6u  IPv4   7270      0t0  TCP *:443 (LISTEN)
+nginx       716        www-data    5u  IPv4   7269      0t0  TCP *:80 (LISTEN)
+nginx       716        www-data    6u  IPv4   7270      0t0  TCP *:443 (LISTEN)
+nginx       717        www-data    5u  IPv4   7269      0t0  TCP *:80 (LISTEN)
+nginx       717        www-data    6u  IPv4   7270      0t0  TCP *:443 (LISTEN)
+chronyd     738         _chrony    5u  IPv4   6546      0t0  UDP localhost:323 
+chronyd     738         _chrony    6u  IPv6   6547      0t0  UDP ip6-localhost:323 
+mysqld      943           mysql   21u  IPv4   6985      0t0  TCP localhost:33060 (LISTEN)
+mysqld      943           mysql   33u  IPv4   6987      0t0  TCP localhost:3306 (LISTEN)
+mysqld      943           mysql   61u  IPv4  83131      0t0  TCP localhost:3306->localhost:33236 (ESTABLISHED)
+mysqld      943           mysql   68u  IPv4  83118      0t0  TCP localhost:3306->localhost:33110 (ESTABLISHED)
+isuride    1066          isucon    6u  IPv6   7968      0t0  TCP *:8080 (LISTEN)
+isuride    1066          isucon   48u  IPv4  82847      0t0  TCP localhost:33236->localhost:3306 (ESTABLISHED)
+isuride    1066          isucon   57u  IPv4  82753      0t0  TCP localhost:33110->localhost:3306 (ESTABLISHED)
+payment_m  1068          isucon    3u  IPv6   7054      0t0  TCP *:12345 (LISTEN)
+ssm-agent  1187            root   14u  IPv4   8412      0t0  TCP ip-192-168-0-11.ap-northeast-1.compute.internal:21846->52.119.220.97:443 (ESTABLISHED)
+
+#サービス確認
+isucon@ip-192-168-0-11:~$ service --status-all
+ [ + ]  acpid
+ [ + ]  apparmor
+ [ + ]  apport
+ [ + ]  chrony
+ [ - ]  console-setup.sh
+ [ + ]  cron
+ [ - ]  cryptdisks
+ [ - ]  cryptdisks-early
+ [ + ]  dbus
+ [ - ]  grub-common
+ [ - ]  hibagent
+ [ + ]  irqbalance
+ [ - ]  iscsid
+ [ - ]  keyboard-setup.sh
+ [ + ]  kmod
+ [ + ]  mysql
+ [ + ]  nginx
+ [ - ]  open-iscsi
+ [ - ]  open-vm-tools
+ [ + ]  plymouth
+ [ + ]  plymouth-log
+ [ + ]  procps
+ [ - ]  rsync
+ [ - ]  screen-cleanup
+ [ + ]  ssh
+ [ + ]  sysstat
+ [ + ]  ufw
+ [ + ]  unattended-upgrades
+ [ - ]  uuidd
+
+
+#ホスト確認
+isucon@ip-192-168-0-11:~$ cat /etc/hosts
+127.0.0.1 localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+# BEGIN ANSIBLE MANAGED BLOCK
+
+# ISURIDE IP for matching requests
+127.0.0.1 isuride.xiv.isucon.net
+# END ANSIBLE MANAGED BLOCK

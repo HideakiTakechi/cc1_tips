@@ -102,3 +102,11 @@ ff02::3 ip6-allhosts
 # ISURIDE IP for matching requests
 127.0.0.1 isuride.xiv.isucon.net
 # END ANSIBLE MANAGED BLOCK
+
+# SQLの接続ユーザ・パスワード・DB名
+$ cat env.sh 
+ISUCON_DB_HOST="127.0.0.1"
+ISUCON_DB_PORT="3306"
+ISUCON_DB_USER="isucon"
+ISUCON_DB_PASSWORD="isucon"
+ISUCON_DB_NAME="isuride"

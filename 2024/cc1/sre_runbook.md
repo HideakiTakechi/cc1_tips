@@ -26,16 +26,16 @@ isucon14 Discordは都度確認する。
 
 ### ■EC2の起動
 SREが以下の作業を行う。
-- [ ] [ISUCON14 Portal](https://portal.isucon.net)からCloudFormationのテンプレートをダウンロード。  
-- [ ] ダウンロードしたテンプレートファイルを元にAWSでスタックを作成しCREATE_COMPLETEを待つ。(EIPの上限5に注意)  
-- [ ] 全インスタンスのIPアドレスをDiscordで連絡する。
-- [ ] 各インスタンスに~/bin/isucon_toolsを導入しssh keepalive設定などを行う。
+- [x] [ISUCON14 Portal](https://portal.isucon.net)からCloudFormationのテンプレートをダウンロード。  
+- [x] ダウンロードしたテンプレートファイルを元にAWSでスタックを作成しCREATE_COMPLETEを待つ。(EIPの上限5に注意)  
+- [x] 全インスタンスのIPアドレスをDiscordで連絡する。
+- [x] 各インスタンスに~/bin/isucon_toolsを導入しssh keepalive設定などを行う。
 
 ### ■ssh接続準備  
-- [ ] .ssh/configへ全インスタンスのIPアドレスを追記する。(ForwardAgent=yesでssh-agentもONにしよう)　
-- [ ] 出来たインスタンスに各自の攻略環境からssh接続する。user=isuconで接続できるはず。
-- [ ] ~/binを作成しisucon_toolsをgit cloneする。
-- [ ] 04_setupSSH.shを実行してssh keepalive設定を行う。  
+- [x] .ssh/configへ全インスタンスのIPアドレスを追記する。(ForwardAgent=yesでssh-agentもONにしよう)　
+- [x] 出来たインスタンスに各自の攻略環境からssh接続する。user=isuconで接続できるはず。
+- [x] ~/binを作成しisucon_toolsをgit cloneする。
+- [x] 04_setupSSH.shを実行してssh keepalive設定を行う。  
 ```
 Host isucon14f1
     User isucon
@@ -54,16 +54,16 @@ $ cd isucon_tools/
 $ ./04_setupSSH.sh
 ```
 ### ■Ansible接続準備  
-- [ ] ansibleのinventory.yamlに全インスタンスのIPアドレス追記する。
-- [ ] EC2への接続試験を行う。
+- [x] ansibleのinventory.yamlに全インスタンスのIPアドレス追記する。
+- [x] EC2への接続試験を行う。
 ```
 $ cd ansible
 $ vi inventory.yaml
 $ ansible-playbook -i inventory.yaml test_connection.yaml # EC2へのssh接続試験
 ```
 ### ■EC2にssh接続
-- [ ] ~/binを作成しisucon_toolsをgit cloneする。
-- [ ] 04_setupSSH.shを実行してssh keepalive設定を行う。  
+- [x] ~/binを作成しisucon_toolsをgit cloneする。
+- [x] 04_setupSSH.shを実行してssh keepalive設定を行う。  
 ```
 $ cd ~
 $ mkdir bin
@@ -77,9 +77,9 @@ $ ./04_setupSSH.sh
 用意しておいたgithubのプライベートの空リポジトリ[cc1_webapp](https://github.com/HideakiTakechi/cc1_webapp)にwebappを登録する。
 isucon14f1を代表としてソースや設定をpushし環境保全する。  
 ※scriptやsnipetで補助しつつ基本手動で。 
-- [ ] EC2に接続しwebapp/.gitigonoreを設定。
-- [ ] webappでgit initして空commit、.gitignoreを作成しgit add,commit
-- [ ] リモートリポジトリ登録して初回push。05_add_webapp_to_github.shを改変して実行。または[ここ](https://github.com/ChallengeClub/isucon_tips/blob/main/2023/20231019_webapp_to_github.md)を参考に手動で設定。
+- [x] EC2に接続しwebapp/.gitigonoreを設定。
+- [x] webappでgit initして空commit、.gitignoreを作成しgit add,commit
+- [x] リモートリポジトリ登録して初回push。05_add_webapp_to_github.shを改変して実行。または[ここ](https://github.com/ChallengeClub/isucon_tips/blob/main/2023/20231019_webapp_to_github.md)を参考に手動で設定。
 - [ ] 他のインスタンスでpullしてコンフリクトがないことを確認する。
 ```
 $ cd ~/webapp
@@ -102,8 +102,8 @@ $ vi 06_add_webapp_to_github_gitpull.sh   # configやremote urlを編集
 $ ./06_add_webapp_to_github_gitpull.sh    # webapp以下をgithubに登録する。
 ```
 ### ■EC2環境保全（etc）
-- [ ] /etcから主要な設定を~/webapp/etcにコピー。（nginx,mysql,systemdなど）
-- [ ] commit,push
+- [x] /etcから主要な設定を~/webapp/etcにコピー。（nginx,mysql,systemdなど）
+- [x] commit,push
 ```
 $ cd ~/webapp
 $ mkdir etc
